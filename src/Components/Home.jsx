@@ -192,7 +192,7 @@ const Home = () => {
         </div>
       ) : (
         <>
-          <div className="flex flex-c items-center">
+          <div className="flex flex-col items-center">
             <Leftslidbar />
           </div>
           <div className="flex justify-center items-center flex-col">

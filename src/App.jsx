@@ -5,11 +5,16 @@ import Createpost from "./Components/Createpost";
 import ShowLike from "./Components/Showlike";
 import Saved from "./Components/Saved";
 import Search from "./Components/Search";
+import Leftslidbar from "./Components/Leftslidbar";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "/left",
+    element: <Leftslidbar />,
   },
   {
     path: "/cpost",

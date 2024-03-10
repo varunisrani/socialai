@@ -43,7 +43,7 @@ const Createpost = () => {
         </div>
       ) : (
         <div className="flex flex-col items-center mt-20">
-          <h1 className="text-4xl font-bold mb-8">Post a Blog</h1>
+          <h1 className="text-4xl font-bold mb-8">Create Post</h1>
           <div className="w-full max-w-md">
             <input
               type="text"

@@ -1,4 +1,5 @@
 import { Add, Bookmark, Home, PhotoVideo, User } from "react-flaticons";
+import { Link } from "react-router-dom";
 
 const Leftslidbar = () => {
   return (
@@ -31,22 +32,24 @@ const Leftslidbar = () => {
           <div className="relative pl-3 my-5 overflow-y-scroll">
             <div className="flex flex-col w-full font-medium">
               <div>
-                <span className="select-none flex items-center px-4 py-[.775rem] cursor-pointer my-[.4rem] rounded-[.95rem]">
-                  <a
-                    href="javascript:;"
-                    className="flex items-center flex-grow text-[1.15rem] text-white w-20 p-4 rounded-lg bg-gradient-to-r from-#03001e via-#7303c0 to-#ec38bc  :rounded-lg transition-all duration-300 ease-in-out"
-                  >
-                    <Home color="white" size="22px" />
-                    <h1 className="mt-1 ml-2 font-medium text-xl">Home</h1>
-                  </a>
-                </span>
+                <Link to="/">
+                  <span className="select-none flex items-center px-4 py-[.775rem] cursor-pointer my-[.4rem] rounded-[.95rem]">
+                    <Link
+                      to="/"
+                      className="flex items-center flex-grow text-[1.15rem] text-white bg-gradient-to-r from-purple-500 to-purple-800 w-20 p-4 rounded-lg transition-all duration-300 ease-in-out"
+                    >
+                      <Home color="white" size="22px" />
+                      <h1 className="mt-1 ml-2 font-medium text-xl">Home</h1>
+                    </Link>
+                  </span>
+                </Link>
               </div>
 
               <div>
                 <span className="select-none flex items-center px-4 py-[.775rem] cursor-pointer my-[.4rem] rounded-[.95rem]">
                   <a
                     href="javascript:;"
-                    className="flex items-center flex-grow text-[1.15rem] text-white hover:w-20 hover:p-4 hover:bg-gradient-to-r from-#03001e via-#7303c0 to-#ec38bc w-20 p-4 bg-[#0A0A0D] hover:rounded-lg transition-all duration-300 ease-in-out"
+                    className="flex items-center flex-grow text-[1.15rem] w-20 p-4  text-white hover:w-20 hover:p-4 hover:bg-gradient-to-r hover:from-purple-500 hover:to-purple-800 hover:rounded-lg"
                   >
                     <PhotoVideo className="text-white" size="24px" />
                     <h1 className="mt-1 ml-2 font-medium text-xl">Explore</h1>
@@ -57,7 +60,7 @@ const Leftslidbar = () => {
                 <span className="select-none flex items-center px-4 py-[.775rem] cursor-pointer my-[.4rem] rounded-[.95rem]">
                   <a
                     href="javascript:;"
-                    className="flex items-center flex-grow text-[1.15rem] text-white hover:w-20 hover:p-4 hover:bg-gradient-to-r from-#03001e via-#7303c0 to-#ec38bc w-20 p-4 bg-[#0A0A0D] hover:rounded-lg transition-all duration-300 ease-in-out"
+                    className="flex items-center flex-grow text-[1.15rem] text-white w-20 p-4 hover:w-20 hover:p-4 hover:bg-gradient-to-r hover:from-purple-500 hover:to-purple-800 hover:rounded-lg"
                   >
                     <User className="text-white" size="24px" />
                     <h1 className="mt-1 ml-2 font-medium text-xl">People</h1>
@@ -65,21 +68,23 @@ const Leftslidbar = () => {
                 </span>
               </div>
               <div>
-                <span className="select-none flex items-center px-4 py-[.775rem] cursor-pointer my-[.4rem] rounded-[.95rem]">
-                  <a
-                    href="javascript:;"
-                    className="flex items-center flex-grow text-[1.15rem] text-white hover:w-20 hover:p-4 hover:bg-gradient-to-r from-#03001e via-#7303c0 to-#ec38bc w-20 p-4 bg-[#0A0A0D] hover:rounded-lg transition-all duration-300 ease-in-out"
-                  >
-                    <Bookmark className="text-white" size="24px" />
-                    <h1 className="mt-1 ml-2 font-medium text-xl">Saved</h1>
-                  </a>
-                </span>
+                <Link to="/save">
+                  <span className="select-none flex items-center px-4 py-[.775rem] cursor-pointer my-[.4rem] rounded-[.95rem]">
+                    <a
+                      href="javascript:;"
+                      className="flex items-center flex-grow text-[1.15rem]w-20 p-4  text-white hover:w-20 hover:p-4 hover:bg-gradient-to-r hover:from-purple-500 hover:to-purple-800 hover:rounded-lg"
+                    >
+                      <Bookmark className="text-white" size="24px" />
+                      <h1 className="mt-1 ml-2 font-medium text-xl">Saved</h1>
+                    </a>
+                  </span>
+                </Link>
               </div>
               <div>
                 <span className="select-none flex items-center px-4 py-[.775rem] cursor-pointer my-[.4rem] rounded-[.95rem]">
                   <a
                     href="javascript:;"
-                    className="flex items-center flex-grow text-[1.15rem] text-white hover:w-20 hover:p-4 hover:bg-gradient-to-r from-#03001e via-#7303c0 to-#ec38bc w-20 p-4 bg-[#0A0A0D] hover:rounded-lg transition-all duration-300 ease-in-out"
+                    className="flex items-center flex-grow text-[1.15rem] w-20 p-4  text-white hover:w-20 hover:p-4 hover:bg-gradient-to-r hover:from-purple-500 hover:to-purple-800 hover:rounded-lg"
                   >
                     <Add className="text-white" size="24px" />
                     <h1 className="mt-1 ml-2 font-medium text-xl">
