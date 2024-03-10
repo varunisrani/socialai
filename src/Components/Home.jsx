@@ -15,6 +15,8 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import { nanoid } from "nanoid";
 import { motion } from "framer-motion";
+import Leftslidbar from "./Leftslidbar";
+import { Bookmark, Heart } from "react-flaticons";
 
 const Home = () => {
   const [user] = useAuthState(auth);
@@ -181,7 +183,7 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-500 to-indigo-600 p-4">
+    <div className="min-h-screen bg-black p-4">
       {!user ? (
         <div className="flex flex-col justify-center items-center absolute inset-0">
           <button className="bg-white shadow-xl text-blue-700 font-bold w-20 p-4 rounded-full">
@@ -189,71 +191,116 @@ const Home = () => {
           </button>
         </div>
       ) : (
-        <div className="flex flex-col items-center">
-          <h1 className="text-4xl font-bold mt-8 mb-4 text-white">
-            Welcome to Social AI
-          </h1>
+        <>
+          <div className="flex flex-c items-center">
+            <Leftslidbar />
+          </div>
           <div className="flex justify-center items-center flex-col">
+            <h1 className="text-4xl font-bold mt-8 mb-4 text-white">
+              Welcome to Social AI
+            </h1>
             <h1 className="text-5xl font-bold text-white mb-8">Latest Posts</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {posts.map((data) => (
-                <motion.div
-                  key={data.id}
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <div className="bg-white p-6 rounded-lg shadow-lg mb-8">
-                    <img
-                      src={data.ipost}
-                      className="mt-4 rounded-lg"
-                      alt="Post"
-                    />
-                    <h1 className="text-2xl font-bold mb-4 mt-4">
-                      {data.title}
-                    </h1>
-                    <p className="text-gray-700">{data.post}</p>
-                    <h1 className="mt-3">
-                      {data.hastags} Likes {data.likes}
-                    </h1>
-                    <div className="flex items-center mt-4">
-                      <img
-                        src={data.photo}
-                        alt="User Avatar"
-                        className="w-8 h-8 rounded-full mr-2"
-                      />
-                      <span className="text-gray-600">{data.name}</span>
-                    </div>
-                    <button
-                      className={`mt-4 bg-blue-500 mr-5 text-white px-3 py-1 rounded hover:bg-red-600 ${
-                        likedPosts.includes(data.id) ? "bg-red-600" : ""
-                      }`}
-                      onClick={() => handleLike(data.id, data.likes)}
-                    >
-                      {likedPosts.includes(data.id) ? "Unlike" : "Like"}
-                    </button>
-                    <button
-                      className={`mt-4 bg-blue-500 mr-5 text-white px-3 py-1 rounded hover:bg-red-600 ${
-                        savedPosts.includes(data.id) ? "bg-red-600" : ""
-                      }`}
-                      onClick={() => handleSave(data.id)}
-                    >
-                      {savedPosts.includes(data.id) ? "Unsave" : "Save"}
-                    </button>
-                    {user.uid === data.uid && (
-                      <button
-                        className="mt-4 bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-                        onClick={() => deleteBlogPost(data.id)}
-                      >
-                        Delete
-                      </button>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
+              \
+              <div className="flex flex-col gap-10">
+                {posts.map((data) => (
+                  <motion.div
+                    key={data.id}
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <>
+                      <div className="bg-[#0A0A0D] p-10 rounded-lg shadow-md max-w-md">
+                        <div className="flex items-center justify-between mb-4">
+                          <div className="flex items-center space-x-2">
+                            <img
+                              src={data.photo}
+                              alt="User Avatar"
+                              className="w-8 h-8 rounded-full"
+                            />
+                            <div>
+                              <p className="text-white font-semibold">
+                                {data.name}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="text-gray-500 cursor-pointer">
+                            <button className="hover:bg-gray-50 rounded-full p-1">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                // eslint-disable-next-line react/no-unknown-property
+                                stroke-width="2"
+                                // eslint-disable-next-line react/no-unknown-property
+                                stroke-linecap="round"
+                                // eslint-disable-next-line react/no-unknown-property
+                                stroke-linejoin="round"
+                              >
+                                <circle cx="12" cy="7" r="1" />
+                                <circle cx="12" cy="12" r="1" />
+                                <circle cx="12" cy="17" r="1" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+
+                        <div className="mb-4">
+                          <p className="text-white">
+                            {data.title}
+                            <div className="flex flex-row gap-2">
+                              <a href="" className="text-gray-400">
+                                {data.hastags}
+                              </a>
+                            </div>
+                          </p>
+                        </div>
+
+                        <div className="mb-4">
+                          <img
+                            src={data.ipost}
+                            alt="Post Image"
+                            className="w-full h-48 object-cover rounded-md"
+                          />
+                        </div>
+
+                        <div className="flex items-center justify-between text-gray-500">
+                          <div className="flex items-center space-x-2">
+                            <button
+                              className="flex justify-center items-center gap-2 px-2 hover:bg-gray-50 rounded-full p-1"
+                              onClick={() => handleLike(data.id, data.likes)}
+                            >
+                              {likedPosts.includes(data.id) ? (
+                                <Heart color="#E75480" />
+                              ) : (
+                                <Heart />
+                              )}
+                              <span>{data.likes}</span>
+                            </button>
+                          </div>
+                          <button
+                            className="flex justify-center items-center gap-2 px-2 hover:bg-gray-50 rounded-full p-1"
+                            onClick={() => handleSave(data.id)}
+                          >
+                            {savedPosts.includes(data.id) ? (
+                              <Bookmark color="#871F78" />
+                            ) : (
+                              <Bookmark />
+                            )}
+                          </button>
+                        </div>
+                      </div>
+                    </>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   );
