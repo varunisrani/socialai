@@ -87,7 +87,7 @@ const Home = () => {
     }
   }, [user]);
 
-  const deleteBlogPost = async (postId) => {
+  /*const deleteBlogPost = async (postId) => {
     try {
       const postRef = firestoreDoc(db, "sposts", postId);
       await deleteDoc(postRef);
@@ -95,7 +95,7 @@ const Home = () => {
     } catch (error) {
       console.error("Error deleting post: ", error.message);
     }
-  };
+  };*/
 
   const handleLike = async (postId, currentLikes) => {
     try {

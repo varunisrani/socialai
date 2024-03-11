@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Bookmark, Heart } from "react-flaticons";
 import {
   collection,
   query,
@@ -79,7 +78,7 @@ const ShowSaved = () => {
                 >
                   <>
                     <div className="bg-[#0A0A0D] p-10 rounded-lg shadow-md max-w-md">
-                      <div className="flex items-center justify-between mb-4">
+                      <div className="flex itemss-center justify-between mb-4">
                         <div className="flex items-center space-x-2">
                           <img
                             src={data.photo}
