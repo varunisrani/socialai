@@ -6,7 +6,6 @@ import ShowLike from "./Components/Showlike";
 import Saved from "./Components/Saved";
 import Search from "./Components/Search";
 import Leftslidbar from "./Components/Leftslidbar";
-import S from "./Components/S";
 import People from "./Components/People";
 const router = createBrowserRouter([
   {
@@ -16,10 +15,6 @@ const router = createBrowserRouter([
   {
     path: "/left",
     element: <Leftslidbar />,
-  },
-  {
-    path: "/s",
-    element: <S />,
   },
   {
     path: "/cpost",
