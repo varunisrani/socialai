@@ -71,20 +71,20 @@ const Leftslidbar = () => {
                 <div>
                   <Link to="/save">
                     <span className="select-none flex items-center px-4 py-[.775rem] cursor-pointer my-[.4rem] rounded-[.95rem]">
-                      <Link
+                      <div
                         href="javascript:;"
                         className="flex items-center flex-grow text-[1.15rem]w-20 p-4  text-white hover:w-20 hover:p-4 hover:bg-gradient-to-r hover:from-purple-500 hover:to-purple-800 hover:rounded-lg"
                       >
                         <Bookmark className="text-white" size="24px" />
                         <h1 className="mt-1 ml-2 font-medium text-xl">Saved</h1>
-                      </Link>
+                      </div>
                     </span>
                   </Link>
                 </div>
                 <div>
                   <Link to="/youlike">
                     <span className="select-none flex items-center px-4 py-[.775rem] cursor-pointer my-[.4rem] rounded-[.95rem]">
-                      <Link
+                      <div
                         href="javascript:;"
                         className="flex items-center flex-grow text-[1.15rem]w-20 p-4  text-white hover:w-20 hover:p-4 hover:bg-gradient-to-r hover:from-purple-500 hover:to-purple-800 hover:rounded-lg"
                       >
@@ -92,7 +92,7 @@ const Leftslidbar = () => {
                         <h1 className="mt-1 ml-2 font-medium text-xl">
                           Liked Post
                         </h1>
-                      </Link>
+                      </div>
                     </span>
                   </Link>
                 </div>

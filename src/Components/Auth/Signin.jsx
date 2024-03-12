@@ -4,8 +4,12 @@ import { signInWithPopup } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
+import ClipLoader from "react-spinners/ClipLoader";
+import Leftslidbar from "../Leftslidbar";
+import { useState } from "react";
 
 const Signin = () => {
+  const [submitting] = useState(false);
   const google = async () => {
     try {
       const provider = new GoogleAuthProvider();
@@ -38,8 +42,24 @@ const Signin = () => {
     await auth.signOut();
   };
 
-  const [user] = useAuthState(auth);
-
+  const [user, loading] = useAuthState(auth);
+  if (loading) {
+    return (
+      <>
+        <Leftslidbar />
+        <div className="flex items-center justify-center h-screen bg-black">
+          <ClipLoader
+            color="purple" // Change color to your preference
+            loading={loading || submitting}
+            size={120}
+            aria-label="Loading Spinner"
+            className="ml-10"
+            data-testid="loader"
+          />
+        </div>
+      </>
+    );
+  }
   return (
     <div className="flex justify-center items-center absolute inset-0 bg-black">
       {user ? (

@@ -6,44 +6,66 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./Auth/firebase";
 import { nanoid } from "nanoid";
 import Leftslidbar from "./Leftslidbar";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Createpost = () => {
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const [title, setTitle] = useState("");
   const [post, setPost] = useState("");
   const [image, setImage] = useState("");
   const [hastag, setHastag] = useState("");
+  const [submitting, setSubmitting] = useState(false); // Added state for submission loading
 
-  // Destructure properties conditionally
   const uid = auth.currentUser ? auth.currentUser.uid : null;
   const displayName = auth.currentUser ? auth.currentUser.displayName : null;
   const photoURL = auth.currentUser ? auth.currentUser.photoURL : null;
 
   const addData = async () => {
-    await addDoc(collection(db, "sposts"), {
-      postId: nanoid(),
-      title: title,
-      post: post,
-      ipost: image,
-      uid: uid,
-      name: displayName,
-      photo: photoURL,
-      hastags: hastag,
-      likes: 0,
-    });
-    alert("Post added successfully");
-    setTitle("");
-    setPost("");
+    try {
+      setSubmitting(true); // Set submitting to true when starting submission
+      await addDoc(collection(db, "sposts"), {
+        postId: nanoid(),
+        title: title,
+        post: post,
+        ipost: image,
+        uid: uid,
+        name: displayName,
+        photo: photoURL,
+        hastags: hastag,
+        likes: 0,
+      });
+      alert("Post added successfully");
+      setTitle("");
+      setPost("");
+    } catch (error) {
+      console.error("Error adding post:", error);
+    } finally {
+      setSubmitting(false); // Reset submitting to false after submission
+    }
   };
+
+  if (loading) {
+    return (
+      <>
+        <Leftslidbar />
+        <div className="flex items-center justify-center h-screen bg-black">
+          <ClipLoader
+            color="purple" // Change color to your preference
+            loading={loading || submitting}
+            size={120}
+            aria-label="Loading Spinner"
+            className="ml-10"
+            data-testid="loader"
+          />
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
       <div className="min-h-screen bg-black p-4">
-        {!user ? (
-          <div className="flex items-center justify-center h-screen">
-            <h1 className="text-3xl font-semibold">Login to access</h1>
-          </div>
-        ) : (
+        {user ? (
           <>
             <div className="flex flex-col items-center">
               <Leftslidbar />
@@ -84,15 +106,20 @@ const Createpost = () => {
                 />
                 <Link to="/">
                   <button
-                    className="w-full bg-purple-500 rounded-lg text-white px-4 py-2  "
+                    className="w-full bg-purple-500 rounded-lg text-white px-4 py-2"
                     onClick={addData}
+                    disabled={submitting} // Disable button while submitting
                   >
-                    Submit
+                    {submitting ? "Submitting..." : "Submit"}
                   </button>
                 </Link>
               </div>
             </div>
           </>
+        ) : (
+          <div className="flex items-center justify-center h-screen text-white">
+            <h1 className="text-3xl font-semibold">Login to access</h1>
+          </div>
         )}
       </div>
     </>

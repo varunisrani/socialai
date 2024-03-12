@@ -5,10 +5,12 @@ import { Link } from "react-flaticons";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Leftslidbar from "./Leftslidbar";
 import { motion } from "framer-motion";
+import ClipLoader from "react-spinners/ClipLoader";
+
 const Search = () => {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState({ profiles: [], posts: [] });
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
 
   useEffect(() => {
     const fetchData = () => {
@@ -41,6 +43,24 @@ const Search = () => {
 
     fetchData();
   }, [search]);
+
+  if (loading) {
+    return (
+      <>
+        <Leftslidbar />
+        <div className="flex items-center justify-center h-screen bg-black">
+          <ClipLoader
+            color="purple"
+            loading={loading || submitting}
+            size={120}
+            aria-label="Loading Spinner"
+            className="ml-10"
+            data-testid="loader"
+          />
+        </div>
+      </>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-black p-4">
@@ -76,7 +96,7 @@ const Search = () => {
                     <div
                       className="flex-shrink-0 m-6 relative overflow-hidden rounded-lg max-w-xs shadow-lg h-[20rem] w-80"
                       style={{
-                        backgroundImage: `url('${post.ipost}')`, // Replace with your image URL
+                        backgroundImage: `url('${post.ipost}')`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                       }}

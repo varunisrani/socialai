@@ -12,11 +12,12 @@ import { auth, db } from "./Auth/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import Leftslidbar from "./Leftslidbar";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const ShowSaved = () => {
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const [savedPosts, setSavedPosts] = useState([]);
-
+  const [submitting] = useState(false);
   useEffect(() => {
     const fetchSavedPosts = async () => {
       try {
@@ -56,7 +57,23 @@ const ShowSaved = () => {
       fetchSavedPosts();
     }
   }, [user]);
-
+  if (loading) {
+    return (
+      <>
+        <Leftslidbar />
+        <div className="flex items-center justify-center h-screen bg-black">
+          <ClipLoader
+            color="purple" // Change color to your preference
+            loading={loading || submitting}
+            size={120}
+            aria-label="Loading Spinner"
+            className="ml-10"
+            data-testid="loader"
+          />
+        </div>
+      </>
+    );
+  }
   return (
     <div className="min-h-screen bg-black p-4">
       {user ? (

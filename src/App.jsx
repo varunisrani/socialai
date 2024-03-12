@@ -7,10 +7,16 @@ import Saved from "./Components/Saved";
 import Search from "./Components/Search";
 import Leftslidbar from "./Components/Leftslidbar";
 import People from "./Components/People";
+import S from "./Components/S";
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "/s",
+    element: <S />,
   },
   {
     path: "/left",

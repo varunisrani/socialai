@@ -14,11 +14,13 @@ import {
   where,
 } from "firebase/firestore";
 import { motion } from "framer-motion";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const People = () => {
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const [users, setUsers] = useState([]);
   const [followerIds, setFollowerIds] = useState([]);
+  const [submitting] = useState(false);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -88,6 +90,24 @@ const People = () => {
       console.error("Error handling follow/unfollow: ", error.message);
     }
   };
+
+  if (loading) {
+    return (
+      <>
+        <Leftslidbar />
+        <div className="flex items-center justify-center h-screen bg-black">
+          <ClipLoader
+            color="purple" // Change color to your preference
+            loading={loading || submitting}
+            size={120}
+            aria-label="Loading Spinner"
+            className="ml-10"
+            data-testid="loader"
+          />
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
