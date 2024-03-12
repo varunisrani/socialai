@@ -15,16 +15,18 @@ const Leftslidbar = () => {
                 className="transition-colors duration-200 ease-in-out"
                 href="https://www.loopple.com"
               >
-                <div className="flex flex-row">
-                  <img
-                    alt="Logo"
-                    src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/logos/loopple.svg"
-                    className="inline"
-                  />
-                  <h1 className="mt-1 ml-5 font-medium text-white text-2xl">
-                    Social ai
-                  </h1>
-                </div>
+                <Link to="/">
+                  <div className="flex flex-row">
+                    <img
+                      alt="Logo"
+                      src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/logos/loopple.svg"
+                      className="inline"
+                    />
+                    <h1 className="mt-1 ml-5 font-medium text-white text-2xl">
+                      Social ai
+                    </h1>
+                  </div>
+                </Link>
               </Link>
             </div>
 
@@ -108,6 +110,21 @@ const Leftslidbar = () => {
                       </h1>
                     </Link>
                   </span>
+                </div>
+                <div>
+                  <Link to="/profile">
+                    <span className="select-none flex items-center px-4 py-[.775rem] cursor-pointer my-[.4rem] rounded-[.95rem]">
+                      <div
+                        href="javascript:;"
+                        className="flex items-center flex-grow text-[1.15rem]w-20 p-4  text-white hover:w-20 hover:p-4 hover:bg-gradient-to-r hover:from-purple-500 hover:to-purple-800 hover:rounded-lg"
+                      >
+                        <User className="text-white" size="24px" />
+                        <h1 className="mt-1 ml-2 font-medium text-xl">
+                          Profile
+                        </h1>
+                      </div>
+                    </span>
+                  </Link>
                 </div>
 
                 {/* Repet the pattern for other links */}

@@ -11,7 +11,7 @@ const Search = () => {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState({ profiles: [], posts: [] });
   const [user, loading] = useAuthState(auth);
-
+  const [submitting] = useState(false);
   useEffect(() => {
     const fetchData = () => {
       const postsRef = collection(db, "sposts");

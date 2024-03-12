@@ -132,11 +132,13 @@ const People = () => {
                     key={userData.id}
                     className="bg-[#0A0A0D] text-white p-4 rounded-lg mb-4 w-80 flex flex-col items-center ml-10 mt-20"
                   >
-                    <img
-                      src={userData.photoURL || "/default-profile-image.png"}
-                      alt="Profile"
-                      className="w- h-20 rounded-full mb-2"
-                    />
+                    <Link to={`/peoples/${userData.uid}`}>
+                      <img
+                        src={userData.photoURL || "/default-profile-image.png"}
+                        alt="Profile"
+                        className="w- h-20 rounded-full mb-2"
+                      />
+                    </Link>
                     <p className="text-lg font-bold">{userData.displayName}</p>
                     <p className="text-sm">{userData.email}</p>
                     <button

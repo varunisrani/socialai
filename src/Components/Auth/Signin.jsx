@@ -5,7 +5,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
 import ClipLoader from "react-spinners/ClipLoader";
-import Leftslidbar from "../Leftslidbar";
 import { useState } from "react";
 
 const Signin = () => {
@@ -46,7 +45,6 @@ const Signin = () => {
   if (loading) {
     return (
       <>
-        <Leftslidbar />
         <div className="flex items-center justify-center h-screen bg-black">
           <ClipLoader
             color="purple" // Change color to your preference

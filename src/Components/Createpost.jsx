@@ -80,28 +80,28 @@ const Createpost = () => {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder="Enter Your post Title"
-                  className="w-full p-3 border rounded mb-4 bg-[#0A0A0D]"
+                  className="w-full p-3 border  mb-4 bg-[#0A0A0D] rounded-lg"
                 />
                 <input
                   type="text"
                   value={image}
                   onChange={(e) => setImage(e.target.value)}
                   placeholder="Enter Your post Image URL"
-                  className="w-full p-3 border rounded mb-4 bg-[#0A0A0D]"
+                  className="w-full p-3 border rounded-lg mb-4 bg-[#0A0A0D]"
                 />
                 <input
                   type="text"
                   value={hastag}
                   onChange={(e) => setHastag(e.target.value)}
                   placeholder="Enter Your post Hastags"
-                  className="w-full p-3 border rounded mb-4 bg-[#0A0A0D]"
+                  className="w-full p-3 border rounded-lg mb-4 bg-[#0A0A0D]"
                 />
                 <textarea
                   type="text"
                   value={post}
                   onChange={(e) => setPost(e.target.value)}
                   placeholder="Enter post captions"
-                  className="w-full p-3 border rounded mb-6 bg-[#0A0A0D]"
+                  className="w-full p-3 border rounded-lg mb-6 bg-[#0A0A0D]"
                   rows="4"
                 />
                 <Link to="/">
