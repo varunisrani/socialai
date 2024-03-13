@@ -46,6 +46,22 @@ const Home = () => {
     showData();
   }, []);
 
+  const fetchUsers =  () => {
+    try {
+      const usersCollection = collection(db, "users");
+      const usersSnapshot =  getDocs(usersCollection);
+      const usersData = usersSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setUsers(usersData);
+    } catch (error) {
+      console.error("Error fetching users: ", error.message);
+    }
+
+  useEffect(()=>(
+    fetchUsers();
+  ),[])
   useEffect(() => {
     const fetchLikedPosts = async () => {
       try {
@@ -220,7 +236,6 @@ const Home = () => {
             </h1>
             <h1 className="text-5xl font-bold text-white mb-8">Latest Posts</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              \
               <div className="flex flex-col gap-10">
                 {posts.map((data) => (
                   <motion.div
@@ -232,18 +247,20 @@ const Home = () => {
                     <>
                       <div className="bg-[#0A0A0D] p-10 rounded-lg shadow-md max-w-md">
                         <div className="flex items-center justify-between mb-4">
-                          <div className="flex items-center space-x-2">
-                            <img
-                              src={data.photo}
-                              alt="User Avatar"
-                              className="w-8 h-8 rounded-full"
-                            />
-                            <div>
-                              <p className="text-white font-semibold">
-                                {data.name}
-                              </p>
+                          <Link to={`/peoples/${userData.uid}`}>
+                            <div className="flex items-center space-x-2">
+                              <img
+                                src={data.photo}
+                                alt="User Avatar"
+                                className="w-8 h-8 rounded-full"
+                              />
+                              <div>
+                                <p className="text-white font-semibold">
+                                  {data.name}
+                                </p>
+                              </div>
                             </div>
-                          </div>
+                          </Link>
                           <div className="text-gray-500 cursor-pointer">
                             <button className="hover:bg-gray-50 rounded-full p-1">
                               <svg

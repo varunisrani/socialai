@@ -94,7 +94,6 @@ const Profile = () => {
             />
             <h1 className="mt-10">Name: {user.displayName}</h1>
             <h1 className="mt-2">Email: {user.email}</h1>
-            <h1 className="mt-2">Email: {user.uid}</h1>
             <h1 className="text-white text-5xl mt-20">Posts</h1>
           </div>
           <div className="flex justify-center items-center flex-col mt-20 mb-20 ">
