@@ -10,6 +10,7 @@ import People from "./Components/People";
 import S from "./Components/S";
 import Profile from "./Components/Profile";
 import UserProfile from "./Components/UserProfile";
+import Task from "./Components/Task";
 
 const router = createBrowserRouter([
   {
@@ -52,9 +53,14 @@ const router = createBrowserRouter([
     path: "/people",
     element: <People />,
   },
+
   {
     path: "/peoples/:_id",
     element: <UserProfile />,
+  },
+  {
+    path: "/task",
+    element: <Task />,
   },
 ]);
 function App() {
