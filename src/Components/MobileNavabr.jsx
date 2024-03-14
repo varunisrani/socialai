@@ -12,8 +12,8 @@ const MobileNavbar = () => {
     <>
       <nav className="bg-[#0A0A0D] border-gray-200 dark:bg-gray-900 text-white  xl:h">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a
-            href="https://flowbite.com/"
+          <Link
+            to="/"
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
             <img
@@ -24,7 +24,7 @@ const MobileNavbar = () => {
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
               SocialAI
             </span>
-          </a>
+          </Link>
           <button
             onClick={toggleMenu}
             type="button"
@@ -59,7 +59,7 @@ const MobileNavbar = () => {
               <li>
                 <Link
                   to="/"
-                  className="block py-2 px-3 text-white bg-purple-500 rounded md:bg-transparent md:text-purple-500 md:p-0 dark:text-white mac:text-purple-500 mac:text-white"
+                  className="block py-2 px-3 text-white bg-purple-500 rounded md:bg-transparent md:text-purple-500 md:p-0 dark:text-white  "
                   aria-current="page"
                 >
                   Home
@@ -68,7 +68,7 @@ const MobileNavbar = () => {
               <li>
                 <Link
                   to="/search"
-                  className="block py-2 px-3 text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white hover:text-black md:dark:hover:bg-transparent"
+                  className="block py-2 px-3 text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-500 md:p-0 dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white hover:text-black md:dark:hover:bg-transparent"
                 >
                   Explore
                 </Link>
@@ -76,7 +76,7 @@ const MobileNavbar = () => {
               <li>
                 <Link
                   to="/people"
-                  className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white hover:text-black md:dark:hover:bg-transparent"
+                  className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:p-0 dark:text-white md:hover:text-purple-500 dark:hover:bg-gray-700 dark:hover:text-white hover:text-black md:dark:hover:bg-transparent"
                 >
                   People
                 </Link>
@@ -84,7 +84,7 @@ const MobileNavbar = () => {
               <li>
                 <Link
                   to="/save"
-                  className="block py-2 px-3 text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white hover:text-black md:dark:hover:bg-transparent"
+                  className="block py-2 px-3 text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:p-0 dark:text-white md:hover:text-purple-500 dark:hover:bg-gray-700 dark:hover:text-white hover:text-black md:dark:hover:bg-transparent"
                 >
                   Saved
                 </Link>
@@ -92,7 +92,7 @@ const MobileNavbar = () => {
               <li>
                 <Link
                   to="/youlike"
-                  className="block py-2 px-3 text-white   rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white hover:text-black md:dark:hover:bg-transparent"
+                  className="block py-2 px-3 text-white   rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-500 md:p-0 dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white hover:text-black md:dark:hover:bg-transparent"
                 >
                   Liked Post
                 </Link>
@@ -100,7 +100,7 @@ const MobileNavbar = () => {
               <li>
                 <Link
                   to="/cpost"
-                  className="block py-2 px-3 text-whiterounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white hover:text-black md:dark:hover:bg-transparent"
+                  className="block py-2 px-3 text-whiterounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:p-0 dark:text-white md:hover:text-purple-500 dark:hover:bg-gray-700 dark:hover:text-white hover:text-black md:dark:hover:bg-transparent"
                 >
                   CreatePost
                 </Link>
@@ -108,7 +108,7 @@ const MobileNavbar = () => {
               <li>
                 <Link
                   to="/profile"
-                  className="block py-2 px-3 text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white hover:text-black md:dark:hover:bg-transparent"
+                  className="block py-2 px-3 text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-500 md:p-0 dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white hover:text-black md:dark:hover:bg-transparent"
                 >
                   Profile
                 </Link>

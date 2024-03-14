@@ -84,7 +84,7 @@ const Profile = () => {
     <div className="min-h-screen bg-black">
       {user ? (
         <>
-          <div className="flex flex-col items-center phone:hidden mac:hidden">
+          <div className="flex flex-col items-center phone:hidden mac:hidden mid:hidden">
             <Leftslidbar />
           </div>
           <div className="xl:hidden">

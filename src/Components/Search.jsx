@@ -86,7 +86,7 @@ const Search = () => {
               className="p-4 w-80 md:w-96 border-2 border-white rounded-full bg-[#0A0A0D] text-white"
             />
 
-            <div className=" gap-8 mt-10">
+            <div className="flex flex-wrap justify-center items-center gap-8 mt-10">
               {results.posts.map((post) => (
                 <motion.div
                   key={post.id}

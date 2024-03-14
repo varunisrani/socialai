@@ -80,7 +80,7 @@ const ShowLike = () => {
     <div className="min-h-screen bg-black ">
       {user ? (
         <>
-          <div className="flex flex-col items-center phone:hidden mac:hidden">
+          <div className="flex flex-col items-center phone:hidden mac:hidden mid:hidden">
             <Leftslidbar />
           </div>
           <div className="xl:hidden">
@@ -90,7 +90,7 @@ const ShowLike = () => {
             <h1 className="text-4xl font-bold mt-8 mb-4 text-white phone:ml-5">
               Posts Liked by {user.displayName}
             </h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="flex flex-col items-center phone:ml-10 mac:flex mac:flex-col mac:justify-center mac:items-center">
               {likedPosts.map((data) => (
                 <div
                   key={data.id}

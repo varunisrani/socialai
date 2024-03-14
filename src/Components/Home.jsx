@@ -229,7 +229,7 @@ const Home = () => {
             </h1>
             <div className=" gap-8">
               \
-              <div className="flex flex-col gap-10">
+              <div className="flex flex-wrap justify-center items-center gap-10 mb-10">
                 {posts.map((data) => (
                   <motion.div
                     key={data.id}
