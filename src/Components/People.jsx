@@ -94,7 +94,7 @@ const People = () => {
   if (loading) {
     return (
       <>
-        <div className="phone:hidden">
+        <div className="phone:hidden mid:hidden mac:hidden">
           <Leftslidbar />
         </div>
         <div className="flex items-center justify-center h-screen bg-black">
@@ -116,18 +116,18 @@ const People = () => {
       <div className="min-h-screen bg-black ">
         {user ? (
           <>
-            <div className="flex flex-col items-center phone:hidden">
+            <div className="flex flex-col items-center phone:hidden mid:hidden mac:hidden">
               <Leftslidbar />
             </div>
-            <div className="md:hidden mid:hidden lg:hidden xl:hidden">
+            <div className="xl:hidden">
               <MobileNavbar />
             </div>
-            <div className="flex flex-col ml-5 sm:ml-80 mt-20">
+            <div className="flex flex-col ml-5  mt-20 mac:flex mac:flex-col mac:justify-center mac:items-center">
               <h1 className="text-white text-3xl font-bold ml-3 sm:ml-10">
                 All Users
               </h1>
             </div>
-            <div className="flex flex-wrap gap-8 ml-5  phone:grid phone:ml-10 phone:mr-10">
+            <div className="flex flex-wrap gap-8 ml-5  phone:grid phone:ml-10 phone:mr-10 mid:grid mid:ml-10 mid:mr-10 mac:flex mac:flex-wrap mac:justify-center mac:items-center">
               {users.map((userData) => (
                 <motion.div
                   key={userData.id}

@@ -60,7 +60,7 @@ const ShowLike = () => {
   if (loading) {
     return (
       <>
-        <div className="phone:hidden">
+        <div className="phone:hidden mid:hidden mac:hidden">
           <Leftslidbar />
         </div>
         <div className="flex items-center justify-center h-screen bg-black">
@@ -77,13 +77,13 @@ const ShowLike = () => {
     );
   }
   return (
-    <div className="min-h-screen bg-black p-4">
+    <div className="min-h-screen bg-black ">
       {user ? (
         <>
-          <div className="flex flex-col items-center phone:hidden">
+          <div className="flex flex-col items-center phone:hidden mac:hidden">
             <Leftslidbar />
           </div>
-          <div className="md:hidden mid:hidden lg:hidden xl:hidden">
+          <div className="xl:hidden">
             <MobileNavbar />
           </div>
           <div className="flex flex-col items-center ">

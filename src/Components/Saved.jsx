@@ -61,7 +61,7 @@ const ShowSaved = () => {
   if (loading) {
     return (
       <>
-        <div className="phone:hidden">
+        <div className="phone:hidden mid:hidden mac:hidden">
           <Leftslidbar />
         </div>
         <div className="flex items-center justify-center h-screen bg-black">
@@ -81,13 +81,13 @@ const ShowSaved = () => {
     <div className="min-h-screen bg-black ">
       {user ? (
         <>
-          <div className="flex flex-col items-center phone:hidden">
+          <div className="flex flex-col items-center phone:hidden mac:hidden mid:hidden">
             <Leftslidbar />
           </div>
-          <div className="md:hidden mid:hidden lg:hidden xl:hidden">
+          <div className="xl:hidden">
             <MobileNavbar />
           </div>
-          <div className="flex flex-col items-center ml-40 phone:ml-10">
+          <div className="flex flex-col items-center phone:ml-10 mac:flex mac:flex-col mac:justify-center mac:items-center mac">
             <h1 className="text-4xl font-bold mt-8 mb-4 text-white">
               Posts Saved by {user.displayName}
             </h1>

@@ -63,7 +63,7 @@ const Profile = () => {
   if (loading) {
     return (
       <>
-        <div className="phone:hidden">
+        <div className="phone:hidden mid:hidden mac:hidden">
           <Leftslidbar />
         </div>
         <div className="flex items-center justify-center h-screen bg-black">
@@ -81,13 +81,13 @@ const Profile = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black p-4">
+    <div className="min-h-screen bg-black">
       {user ? (
         <>
-          <div className="flex flex-col items-center phone:hidden">
+          <div className="flex flex-col items-center phone:hidden mac:hidden">
             <Leftslidbar />
           </div>
-          <div className="md:hidden mid:hidden lg:hidden xl:hidden">
+          <div className="xl:hidden">
             <MobileNavbar />
           </div>
           <div className="flex flex-col justify-center items-center text-white mt-10">
@@ -181,7 +181,7 @@ const Profile = () => {
             </div>
           </div>
           <button
-            className="bg-purple-500 rounded-lg py-2 px-4 absolute top-4 right-4 cursor-pointer text-white phone:hidden"
+            className="bg-purple-500 rounded-lg py-2 px-4 absolute top-4 right-4 cursor-pointer text-white phone:hidden mac:mt-20 mac:mr-5"
             onClick={handleLogout}
           >
             Logout

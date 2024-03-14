@@ -47,7 +47,7 @@ const Search = () => {
   if (loading) {
     return (
       <>
-        <div className="phone:hidden">
+        <div className="phone:hidden mid:hidden mac:hidden ">
           <Leftslidbar />
         </div>
         <div className="flex items-center justify-center h-screen bg-black">
@@ -68,10 +68,10 @@ const Search = () => {
     <div className="min-h-screen bg-black ">
       {user ? (
         <>
-          <div className="flex flex-col items-center phone:hidden">
+          <div className="flex flex-col items-center phone:hidden mid:hidden mac:hidden">
             <Leftslidbar />
           </div>
-          <div className="md:hidden mid:hidden lg:hidden xl:hidden">
+          <div className="xl:hidden">
             <MobileNavbar />
           </div>
 
@@ -86,7 +86,7 @@ const Search = () => {
               className="p-4 w-80 md:w-96 border-2 border-white rounded-full bg-[#0A0A0D] text-white"
             />
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-10">
+            <div className=" gap-8 mt-10">
               {results.posts.map((post) => (
                 <motion.div
                   key={post.id}

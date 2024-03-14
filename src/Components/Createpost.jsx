@@ -67,13 +67,13 @@ const Createpost = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-black p-4">
+      <div className="min-h-screen bg-black">
         {user ? (
           <>
-            <div className="flex flex-col items-center phone:hidden">
+            <div className="flex flex-col items-center phone:hidden mac:hidden">
               <Leftslidbar />
             </div>
-            <div className="md:hidden mid:hidden lg:hidden xl:hidden">
+            <div className=" xl:hidden">
               <MobileNavbar />
             </div>
             <div className="flex flex-col items-center mt-20">

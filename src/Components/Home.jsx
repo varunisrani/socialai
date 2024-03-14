@@ -188,7 +188,7 @@ const Home = () => {
   if (loading) {
     return (
       <>
-        <div className="phone:hidden">
+        <div className="phone:hidden mid:hidden mac:hidden">
           <Leftslidbar />
         </div>
         <div className="flex items-center justify-center h-screen bg-black">
@@ -205,7 +205,7 @@ const Home = () => {
     );
   }
   return (
-    <div className="min-h-screen bg-black p-4">
+    <div className="min-h-screen bg-black ">
       {!user ? (
         <div className="flex flex-col justify-center items-center absolute inset-0">
           <button className="bg-white shadow-xl text-blue-700 font-bold w-20 p-4 rounded-full">
@@ -214,10 +214,10 @@ const Home = () => {
         </div>
       ) : (
         <>
-          <div className="flex flex-col items-center phone:hidden">
+          <div className="flex flex-col items-center phone:hidden mid:hidden mac:hidden">
             <Leftslidbar />
           </div>
-          <div className="md:hidden mid:hidden lg:hidden xl:hidden">
+          <div className="xl:hidden">
             <MobileNavabr />
           </div>
           <div className="flex justify-center items-center flex-col">
@@ -227,7 +227,7 @@ const Home = () => {
             <h1 className="text-5xl font-bold text-white mb-8 phone:ml-5 phone:mr-5">
               Latest Posts
             </h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className=" gap-8">
               \
               <div className="flex flex-col gap-10">
                 {posts.map((data) => (
