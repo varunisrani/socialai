@@ -12,6 +12,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import Leftslidbar from "./Leftslidbar";
 import ClipLoader from "react-spinners/ClipLoader";
+import MobileNavbar from "./MobileNavabr";
 
 const ShowLike = () => {
   const [user, loading] = useAuthState(auth);
@@ -59,7 +60,9 @@ const ShowLike = () => {
   if (loading) {
     return (
       <>
-        <Leftslidbar />
+        <div className="phone:hidden">
+          <Leftslidbar />
+        </div>
         <div className="flex items-center justify-center h-screen bg-black">
           <ClipLoader
             color="purple" // Change color to your preference
@@ -77,18 +80,21 @@ const ShowLike = () => {
     <div className="min-h-screen bg-black p-4">
       {user ? (
         <>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center phone:hidden">
             <Leftslidbar />
           </div>
+          <div className="md:hidden mid:hidden lg:hidden xl:hidden">
+            <MobileNavbar />
+          </div>
           <div className="flex flex-col items-center ">
-            <h1 className="text-4xl font-bold mt-8 mb-4 text-white">
+            <h1 className="text-4xl font-bold mt-8 mb-4 text-white phone:ml-5">
               Posts Liked by {user.displayName}
             </h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {likedPosts.map((data) => (
                 <div
                   key={data.id}
-                  className="bg-[#0A0A0D] p-6 rounded-lg shadow-lg mb-8 "
+                  className="bg-[#0A0A0D] p-10 rounded-lg shadow-lg mb-8 phone:mt-5"
                 >
                   <img
                     src={data.ipost}

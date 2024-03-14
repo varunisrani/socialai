@@ -18,6 +18,7 @@ import { nanoid } from "nanoid";
 import { motion } from "framer-motion";
 import Leftslidbar from "./Leftslidbar";
 import { Bookmark, Heart } from "react-flaticons";
+import MobileNavabr from "./MobileNavabr";
 
 const Home = () => {
   const [user, loading] = useAuthState(auth);
@@ -187,7 +188,9 @@ const Home = () => {
   if (loading) {
     return (
       <>
-        <Leftslidbar />
+        <div className="phone:hidden">
+          <Leftslidbar />
+        </div>
         <div className="flex items-center justify-center h-screen bg-black">
           <ClipLoader
             color="purple" // Change color to your preference
@@ -211,14 +214,19 @@ const Home = () => {
         </div>
       ) : (
         <>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center phone:hidden">
             <Leftslidbar />
           </div>
+          <div className="md:hidden mid:hidden lg:hidden xl:hidden">
+            <MobileNavabr />
+          </div>
           <div className="flex justify-center items-center flex-col">
-            <h1 className="text-4xl font-bold mt-8 mb-4 text-white">
+            <h1 className="text-4xl font-bold mt-8 mb-4 text-white phone:ml-5 phone:mr-5">
               Welcome to Social AI
             </h1>
-            <h1 className="text-5xl font-bold text-white mb-8">Latest Posts</h1>
+            <h1 className="text-5xl font-bold text-white mb-8 phone:ml-5 phone:mr-5">
+              Latest Posts
+            </h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               \
               <div className="flex flex-col gap-10">
@@ -236,7 +244,7 @@ const Home = () => {
                             <img
                               src={data.photo}
                               alt="User Avatar"
-                              className="w-8 h-8 rounded-full"
+                              className="w-8 h-8 phone:w-10 phone:h-10 rounded-full"
                             />
                             <div>
                               <p className="text-white font-semibold">

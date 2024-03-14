@@ -7,6 +7,7 @@ import { auth } from "./Auth/firebase";
 import { nanoid } from "nanoid";
 import Leftslidbar from "./Leftslidbar";
 import ClipLoader from "react-spinners/ClipLoader";
+import MobileNavbar from "./MobileNavabr";
 
 const Createpost = () => {
   const [user, loading] = useAuthState(auth);
@@ -47,7 +48,9 @@ const Createpost = () => {
   if (loading) {
     return (
       <>
-        <Leftslidbar />
+        <div className="phone:hidden">
+          <Leftslidbar />
+        </div>
         <div className="flex items-center justify-center h-screen bg-black">
           <ClipLoader
             color="purple" // Change color to your preference
@@ -67,8 +70,11 @@ const Createpost = () => {
       <div className="min-h-screen bg-black p-4">
         {user ? (
           <>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center phone:hidden">
               <Leftslidbar />
+            </div>
+            <div className="md:hidden mid:hidden lg:hidden xl:hidden">
+              <MobileNavbar />
             </div>
             <div className="flex flex-col items-center mt-20">
               <h1 className="text-4xl font-bold mb-8 text-white">

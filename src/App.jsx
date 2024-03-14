@@ -7,10 +7,8 @@ import Saved from "./Components/Saved";
 import Search from "./Components/Search";
 import Leftslidbar from "./Components/Leftslidbar";
 import People from "./Components/People";
-import S from "./Components/S";
 import Profile from "./Components/Profile";
 import UserProfile from "./Components/UserProfile";
-import Task from "../py/Task";
 
 const router = createBrowserRouter([
   {
@@ -21,10 +19,7 @@ const router = createBrowserRouter([
     path: "/profile",
     element: <Profile />,
   },
-  {
-    path: "/s",
-    element: <S />,
-  },
+
   {
     path: "/left",
     element: <Leftslidbar />,
@@ -57,10 +52,6 @@ const router = createBrowserRouter([
   {
     path: "/peoples/:_id",
     element: <UserProfile />,
-  },
-  {
-    path: "/task",
-    element: <Task />,
   },
 ]);
 function App() {

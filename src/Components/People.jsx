@@ -1,4 +1,3 @@
-// People.jsx
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { auth, db } from "./Auth/firebase";
@@ -15,6 +14,7 @@ import {
 } from "firebase/firestore";
 import { motion } from "framer-motion";
 import ClipLoader from "react-spinners/ClipLoader";
+import MobileNavbar from "./MobileNavabr";
 
 const People = () => {
   const [user, loading] = useAuthState(auth);
@@ -94,7 +94,9 @@ const People = () => {
   if (loading) {
     return (
       <>
-        <Leftslidbar />
+        <div className="phone:hidden">
+          <Leftslidbar />
+        </div>
         <div className="flex items-center justify-center h-screen bg-black">
           <ClipLoader
             color="purple" // Change color to your preference
@@ -111,16 +113,21 @@ const People = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-black p-4">
+      <div className="min-h-screen bg-black ">
         {user ? (
           <>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center phone:hidden">
               <Leftslidbar />
             </div>
-            <div className="flex flex-col ml-80 mt-20">
-              <h1 className="text-white text-3xl font-bold ml-10">All Users</h1>
+            <div className="md:hidden mid:hidden lg:hidden xl:hidden">
+              <MobileNavbar />
             </div>
-            <div className="flex flex-wrap gap-8 ml-80">
+            <div className="flex flex-col ml-5 sm:ml-80 mt-20">
+              <h1 className="text-white text-3xl font-bold ml-3 sm:ml-10">
+                All Users
+              </h1>
+            </div>
+            <div className="flex flex-wrap gap-8 ml-5  phone:grid phone:ml-10 phone:mr-10">
               {users.map((userData) => (
                 <motion.div
                   key={userData.id}
@@ -130,7 +137,7 @@ const People = () => {
                 >
                   <div
                     key={userData.id}
-                    className="bg-[#0A0A0D] text-white p-4 rounded-lg mb-4 w-80 flex flex-col items-center ml-10 mt-20"
+                    className="bg-[#0A0A0D] text-white p-4 rounded-lg mb-4 w-full sm:w-80 flex flex-col items-center sm:ml-5 mt-10"
                   >
                     <Link to={`/peoples/${userData.uid}`}>
                       <img

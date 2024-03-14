@@ -7,6 +7,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
+import MobileNavbar from "./MobileNavabr";
 
 const UserProfile = () => {
   const { _id } = useParams();
@@ -77,8 +78,11 @@ const UserProfile = () => {
     <div className="min-h-screen bg-black p-4">
       {user && userData ? (
         <>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center phone:hidden">
             <Leftslidbar />
+          </div>
+          <div className="md:hidden mid:hidden lg:hidden xl:hidden">
+            <MobileNavbar />
           </div>
           <div className="flex flex-col justify-center items-center text-white mt-10">
             <img

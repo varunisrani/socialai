@@ -13,6 +13,7 @@ import Leftslidbar from "./Leftslidbar";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Cross } from "react-flaticons";
 import { motion } from "framer-motion";
+import MobileNavbar from "./MobileNavabr";
 
 const Profile = () => {
   const [user, loading] = useAuthState(auth);
@@ -62,7 +63,9 @@ const Profile = () => {
   if (loading) {
     return (
       <>
-        <Leftslidbar />
+        <div className="phone:hidden">
+          <Leftslidbar />
+        </div>
         <div className="flex items-center justify-center h-screen bg-black">
           <ClipLoader
             color="purple"
@@ -81,8 +84,11 @@ const Profile = () => {
     <div className="min-h-screen bg-black p-4">
       {user ? (
         <>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center phone:hidden">
             <Leftslidbar />
+          </div>
+          <div className="md:hidden mid:hidden lg:hidden xl:hidden">
+            <MobileNavbar />
           </div>
           <div className="flex flex-col justify-center items-center text-white mt-10">
             <img
@@ -97,6 +103,12 @@ const Profile = () => {
             <h1 className="text-white text-5xl mt-20">Posts</h1>
           </div>
           <div className="flex justify-center items-center flex-col mt-20 mb-20 ">
+            <button
+              className="bg-purple-500 rounded-lg py-2 px-4 absolute right-0 top-0 phone:mt-40 phone:mr-5 cursor-pointer text-white md:hidden mid:hidden sm:hidden lg:hidden xl:hidden"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
             <div className="flex flex-col gap-10">
               {posts.map((data) => (
                 <motion.div
@@ -169,7 +181,7 @@ const Profile = () => {
             </div>
           </div>
           <button
-            className="bg-purple-500 rounded-lg py-2 px-4 absolute top-4 right-4 cursor-pointer text-white"
+            className="bg-purple-500 rounded-lg py-2 px-4 absolute top-4 right-4 cursor-pointer text-white phone:hidden"
             onClick={handleLogout}
           >
             Logout

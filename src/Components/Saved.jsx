@@ -13,6 +13,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import Leftslidbar from "./Leftslidbar";
 import ClipLoader from "react-spinners/ClipLoader";
+import MobileNavbar from "./MobileNavabr";
 
 const ShowSaved = () => {
   const [user, loading] = useAuthState(auth);
@@ -60,7 +61,9 @@ const ShowSaved = () => {
   if (loading) {
     return (
       <>
-        <Leftslidbar />
+        <div className="phone:hidden">
+          <Leftslidbar />
+        </div>
         <div className="flex items-center justify-center h-screen bg-black">
           <ClipLoader
             color="purple" // Change color to your preference
@@ -75,13 +78,16 @@ const ShowSaved = () => {
     );
   }
   return (
-    <div className="min-h-screen bg-black p-4">
+    <div className="min-h-screen bg-black ">
       {user ? (
         <>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center phone:hidden">
             <Leftslidbar />
           </div>
-          <div className="flex flex-col items-center ml-40">
+          <div className="md:hidden mid:hidden lg:hidden xl:hidden">
+            <MobileNavbar />
+          </div>
+          <div className="flex flex-col items-center ml-40 phone:ml-10">
             <h1 className="text-4xl font-bold mt-8 mb-4 text-white">
               Posts Saved by {user.displayName}
             </h1>
@@ -94,7 +100,7 @@ const ShowSaved = () => {
                   transition={{ duration: 0.5 }}
                 >
                   <>
-                    <div className="bg-[#0A0A0D] p-10 rounded-lg shadow-md max-w-md">
+                    <div className="bg-[#0A0A0D] p-10 rounded-lg shadow-md max-w-md phone:mr-10">
                       <div className="flex itemss-center justify-between mb-4">
                         <div className="flex items-center space-x-2">
                           <img
