@@ -86,7 +86,7 @@ const Search = () => {
               className="p-4 w-80 md:w-96 border-2 border-white rounded-full bg-[#0A0A0D] text-white"
             />
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 xl:ml-20 mt-10">
+            <div className="flex flex-wrap justify-center items-center gap-8 mt-10  mad:mr-20 mad:grid mad:grid-cols-3 mad:ml-80">
               {results.posts.map((post) => (
                 <motion.div
                   key={post.id}

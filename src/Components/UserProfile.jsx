@@ -99,7 +99,7 @@ const UserProfile = () => {
             <h1 className="text-white text-5xl mt-20">Posts</h1>
           </div>
           <div className="flex justify-center items-center flex-col mt-20 mb-20 ">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="flex flex-col gap-10 mad:grid mad:grid-cols-3 mad:ml-60">
               {posts.map((data) => (
                 <motion.div
                   key={data.id}

@@ -91,7 +91,7 @@ const ShowSaved = () => {
             <h1 className="text-4xl font-bold mt-8 mb-4 text-white">
               Posts Saved by {user.displayName}
             </h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mad:ml-60 mt-10">
               {savedPosts.map((data) => (
                 <motion.div
                   key={data.id}
