@@ -214,7 +214,7 @@ const Home = () => {
         </div>
       ) : (
         <>
-          <div className="flex flex-col  mid:hidden mac:hidden first-letter:">
+          <div className="flex flex-col  phone:hidden mid:hidden mac:hidden first-letter:">
             <Leftslidbar />
           </div>
           <div className="xl:hidden">
