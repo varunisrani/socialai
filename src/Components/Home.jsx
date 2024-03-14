@@ -214,22 +214,22 @@ const Home = () => {
         </div>
       ) : (
         <>
-          <div className="flex flex-col items-center phone:hidden mid:hidden mac:hidden">
+          <div className="flex flex-col  mid:hidden mac:hidden first-letter:">
             <Leftslidbar />
           </div>
           <div className="xl:hidden">
             <MobileNavabr />
           </div>
-          <div className="flex justify-center items-center flex-col">
-            <h1 className="text-4xl font-bold mt-8 mb-4 text-white phone:ml-5 phone:mr-5">
+          <div className="flex flex-col items-center phone:ml-10 mac:flex mac:flex-col mac:justify-center mac:items-center">
+            <h1 className="text-4xl font-bold mt-8 mb-4 text-white phone:ml-5 phone:mr-5 ">
               Welcome to Social AI
             </h1>
             <h1 className="text-5xl font-bold text-white mb-8 phone:ml-5 phone:mr-5">
               Latest Posts
             </h1>
-            <div className=" gap-8">
+            <div className=" mad:ml-40 gap-8">
               \
-              <div className="flex flex-wrap justify-center items-center gap-10 mb-10">
+              <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {posts.map((data) => (
                   <motion.div
                     key={data.id}
@@ -238,7 +238,7 @@ const Home = () => {
                     transition={{ duration: 0.5 }}
                   >
                     <>
-                      <div className="bg-[#0A0A0D] p-10 rounded-lg shadow-md max-w-md">
+                      <div className="bg-[#0A0A0D] p-10 rounded-lg shadow-md max-w-md ml-30">
                         <div className="flex items-center justify-between mb-4">
                           <div className="flex items-center space-x-2">
                             <img

@@ -127,7 +127,7 @@ const People = () => {
                 All Users
               </h1>
             </div>
-            <div className="flex flex-wrap gap-8 ml-5  phone:grid phone:ml-10 phone:mr-10 mid:grid mid:ml-10 mid:mr-10 mac:flex mac:flex-wrap mac:justify-center mac:items-center">
+            <div className="flex flex-wrap gap-8 ml-5  phone:grid phone:ml-10 phone:mr-10 mid:grid mid:ml-10 mid:mr-10 mac:flex mac:flex-wrap mac:justify-center mac:items-center xl:ml-60">
               {users.map((userData) => (
                 <motion.div
                   key={userData.id}
