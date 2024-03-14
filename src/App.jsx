@@ -9,6 +9,8 @@ import Leftslidbar from "./Components/Leftslidbar";
 import People from "./Components/People";
 import Profile from "./Components/Profile";
 import UserProfile from "./Components/UserProfile";
+import Task from "./Components/Task";
+import Task2 from "./Components/Task2";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +29,14 @@ const router = createBrowserRouter([
   {
     path: "/cpost",
     element: <Createpost />,
+  },
+  {
+    path: "/task",
+    element: <Task />,
+  },
+  {
+    path: "/task2",
+    element: <Task2 />,
   },
   {
     path: "/signin",
