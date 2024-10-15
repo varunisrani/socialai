@@ -2,28 +2,35 @@ import { GoogleAuthProvider } from "firebase/auth";
 import { auth, db } from "./firebase";
 import { signInWithPopup } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { FcGoogle } from "react-icons/fc";
+import { FiLogIn } from "react-icons/fi";
 
 const Signin = () => {
-  const [submitting] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [user, loading] = useAuthState(auth);
+  const navigate = useNavigate();
+
   const google = async () => {
     try {
+      setSubmitting(true);
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
-
-      // Add user data to the users table
-
-      console.log(user);
+      await addUserData(user);
+      navigate("/");
     } catch (err) {
       console.log(err.message);
+    } finally {
+      setSubmitting(false);
     }
   };
 
-  const addUserData = async () => {
+  const addUserData = async (user) => {
     try {
       const usersCollection = collection(db, "users");
       await addDoc(usersCollection, {
@@ -37,59 +44,71 @@ const Signin = () => {
       console.error("Error adding user data: ", error.message);
     }
   };
+
   const logout = async () => {
     await auth.signOut();
   };
 
-  const [user, loading] = useAuthState(auth);
-  if (loading) {
+  if (loading || submitting) {
     return (
-      <>
-        <div className="flex items-center justify-center h-screen bg-black">
-          <ClipLoader
-            color="purple" // Change color to your preference
-            loading={loading || submitting}
-            size={120}
-            aria-label="Loading Spinner"
-            className="ml-10"
-            data-testid="loader"
-          />
-        </div>
-      </>
+      <div className="flex items-center justify-center h-screen bg-gradient-to-br from-purple-900 to-black">
+        <ClipLoader color="purple" size={120} />
+      </div>
     );
   }
+
   return (
-    <div className="flex justify-center items-center absolute inset-0 bg-black">
-      {user ? (
-        <div className="flex flex-row justify-center items-center text-white">
-          <h1>Hello {user.email}</h1>
-          <h1>Please go to home page</h1>
-          <button
-            className="bg-white shadow-xl text-blue-700 font-bold w-20 p-4 rounded-full"
-            onClick={logout}
-          >
-            Logout
-          </button>
-          <Link to="/">
-            <button
-              className="bg-white shadow-xl text-blue-700 font-bold w-20 p-4 rounded-full"
-              onClick={addUserData}
-            >
-              home
-            </button>
-          </Link>
-        </div>
-      ) : (
-        <div className="flex flex-col">
-          <h1 className="uppercase text-5xl text-white">Social AI</h1>
-          <button
-            className="w-100 p-2 bg-purple-500 rounded-lg text-white mt-10 font-medium"
-            onClick={google}
-          >
-            Login
-          </button>
-        </div>
-      )}
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-900 to-black px-4 sm:px-6 lg:px-8">
+      <motion.div
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="max-w-md w-full space-y-8 bg-gray-800 p-10 rounded-xl shadow-lg"
+      >
+        {user ? (
+          <div className="text-center">
+            <h2 className="mt-6 text-3xl font-extrabold text-white">
+              Welcome, {user.displayName}!
+            </h2>
+            <p className="mt-2 text-sm text-gray-400">You're signed in.</p>
+            <div className="mt-8 space-y-4">
+              <Link
+                to="/"
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+              >
+                Go to Home
+              </Link>
+              <button
+                onClick={logout}
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+              >
+                Logout
+              </button>
+            </div>
+          </div>
+        ) : (
+          <>
+            <div>
+              <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
+                Sign in to Social AI
+              </h2>
+              <p className="mt-2 text-center text-sm text-gray-400">
+                Connect, Share, and Explore with AI-powered social networking
+              </p>
+            </div>
+            <div className="mt-8 space-y-6">
+              <button
+                onClick={google}
+                className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+              >
+                <FcGoogle className="w-5 h-5 mr-2" />
+                Sign in with Google
+              </button>
+            
+            </div>
+          </>
+        )}
+      </motion.div>
     </div>
   );
 };

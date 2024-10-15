@@ -15,6 +15,7 @@ import {
 import { motion } from "framer-motion";
 import ClipLoader from "react-spinners/ClipLoader";
 import MobileNavbar from "./MobileNavabr";
+import NotLoggedIn from "./NotLoggedIn";
 
 const People = () => {
   const [user, loading] = useAuthState(auth);
@@ -93,85 +94,77 @@ const People = () => {
 
   if (loading) {
     return (
-      <>
-        <div className="phone:hidden mid:hidden mac:hidden">
-          <Leftslidbar />
-        </div>
-        <div className="flex items-center justify-center h-screen bg-black">
-          <ClipLoader
-            color="purple" // Change color to your preference
-            loading={loading || submitting}
-            size={120}
-            aria-label="Loading Spinner"
-            className="ml-10"
-            data-testid="loader"
-          />
-        </div>
-      </>
+      <div className="flex items-center justify-center h-screen bg-black">
+        <ClipLoader
+          color="purple"
+          loading={loading || submitting}
+          size={120}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
     );
   }
 
+  if (!user) {
+    return <NotLoggedIn />;
+  }
+
   return (
-    <>
-      <div className="min-h-screen bg-black ">
-        {user ? (
-          <>
-            <div className="flex flex-col items-center phone:hidden mid:hidden mac:hidden">
-              <Leftslidbar />
-            </div>
-            <div className="xl:hidden">
-              <MobileNavbar />
-            </div>
-            <div className="flex flex-col ml-5  mt-20 mac:flex mac:flex-col mac:justify-center mac:items-center">
-              <h1 className="text-white text-3xl font-bold ml-3 sm:ml-10">
-                All Users
-              </h1>
-            </div>
-            <div className="flex flex-wrap gap-8 ml-5  phone:grid phone:ml-10 phone:mr-10 mid:grid mid:ml-10 mid:mr-10 mac:flex mac:flex-wrap mac:justify-center mac:items-center mad:grid mad:grid-cols-3 mad:ml-80 mr-20">
+    <div className="min-h-screen bg-black">
+      {user ? (
+        <>
+          <div className="hidden lg:block">
+            <Leftslidbar />
+          </div>
+          <div className="lg:hidden">
+            <MobileNavbar />
+          </div>
+          <div className="pt-4 lg:pt-8 px-4 sm:px-6 lg:px-8 lg:ml-64">
+            <h1 className="text-white text-3xl font-bold mb-8">All Users</h1>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {users.map((userData) => (
                 <motion.div
                   key={userData.id}
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5 }}
+                  className="bg-[#0A0A0D] text-white p-6 rounded-lg shadow-lg flex flex-col items-center"
                 >
-                  <div
-                    key={userData.id}
-                    className="bg-[#0A0A0D] text-white p-4 rounded-lg mb-4 w-full sm:w-80 flex flex-col items-center sm:ml-5 mt-10"
+                  <Link to={`/peoples/${userData.uid}`}>
+                    <img
+                      src={userData.photoURL || "/default-profile-image.png"}
+                      alt="Profile"
+                      className="w-24 h-24 rounded-full mb-4 object-cover"
+                    />
+                  </Link>
+                  <p className="text-lg font-bold mb-1">{userData.displayName}</p>
+                  <p className="text-sm text-gray-400 mb-4">{userData.email}</p>
+                  <button
+                    onClick={() =>
+                      handleFollowToggle(userData.id, userData.displayName)
+                    }
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
+                      followerIds.includes(userData.id)
+                        ? "bg-purple-700 hover:bg-purple-800"
+                        : "bg-purple-500 hover:bg-purple-600"
+                    }`}
                   >
-                    <Link to={`/peoples/${userData.uid}`}>
-                      <img
-                        src={userData.photoURL || "/default-profile-image.png"}
-                        alt="Profile"
-                        className="w- h-20 rounded-full mb-2"
-                      />
-                    </Link>
-                    <p className="text-lg font-bold">{userData.displayName}</p>
-                    <p className="text-sm">{userData.email}</p>
-                    <button
-                      onClick={() =>
-                        handleFollowToggle(userData.id, userData.displayName)
-                      }
-                      className="p-2 w-20 bg-purple-500 rounded-lg mt-5"
-                    >
-                      {followerIds.includes(userData.id)
-                        ? "Unfollow"
-                        : "Follow"}
-                    </button>
-                  </div>
+                    {followerIds.includes(userData.id) ? "Unfollow" : "Follow"}
+                  </button>
                 </motion.div>
               ))}
             </div>
-          </>
-        ) : (
-          <div className="flex flex-col justify-center items-center absolute inset-0">
-            <button className="bg-white shadow-xl text-blue-700 font-bold w-20 p-4 rounded-full">
-              <Link to="/signin">Login</Link>
-            </button>
           </div>
-        )}
-      </div>
-    </>
+        </>
+      ) : (
+        <div className="flex flex-col justify-center items-center h-screen">
+          <button className="bg-white shadow-xl text-blue-700 font-bold px-6 py-3 rounded-full text-lg">
+            <Link to="/signin">Login</Link>
+          </button>
+        </div>
+      )}
+    </div>
   );
 };
 

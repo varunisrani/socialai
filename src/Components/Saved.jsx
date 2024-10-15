@@ -14,28 +14,27 @@ import { Link } from "react-router-dom";
 import Leftslidbar from "./Leftslidbar";
 import ClipLoader from "react-spinners/ClipLoader";
 import MobileNavbar from "./MobileNavabr";
+import NotLoggedIn from "./NotLoggedIn";
 
 const ShowSaved = () => {
   const [user, loading] = useAuthState(auth);
   const [savedPosts, setSavedPosts] = useState([]);
   const [submitting] = useState(false);
+
   useEffect(() => {
     const fetchSavedPosts = async () => {
       try {
-        // Fetch saved posts from the "saved" collection for the current user
         const savedRef = collection(db, "saved");
         const querySaved = query(savedRef, where("userId", "==", user.uid));
         const savedSnapshot = await getDocs(querySaved);
 
-        // Fetch details of each saved post from the "sposts" collection
-        const uniquePostIds = new Set(); // To store unique post IDs
+        const uniquePostIds = new Set();
         const savedPostsArray = [];
 
         for (const doc of savedSnapshot.docs) {
           const savedData = doc.data();
           const postId = savedData.postId;
 
-          // Check if the post ID is already added
           if (!uniquePostIds.has(postId)) {
             uniquePostIds.add(postId);
 
@@ -58,114 +57,95 @@ const ShowSaved = () => {
       fetchSavedPosts();
     }
   }, [user]);
+
   if (loading) {
     return (
-      <>
-        <div className="phone:hidden mid:hidden mac:hidden">
-          <Leftslidbar />
-        </div>
-        <div className="flex items-center justify-center h-screen bg-black">
-          <ClipLoader
-            color="purple" // Change color to your preference
-            loading={loading || submitting}
-            size={120}
-            aria-label="Loading Spinner"
-            className="ml-10"
-            data-testid="loader"
-          />
-        </div>
-      </>
+      <div className="flex items-center justify-center h-screen bg-black">
+        <ClipLoader
+          color="purple"
+          loading={loading || submitting}
+          size={120}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
     );
   }
+
+  if (!user) {
+    return <NotLoggedIn />;
+  }
+
   return (
-    <div className="min-h-screen bg-black ">
+    <div className="min-h-screen bg-black">
       {user ? (
         <>
-          <div className="flex flex-col items-center phone:hidden mac:hidden mid:hidden">
+          <div className="hidden lg:block">
             <Leftslidbar />
           </div>
-          <div className="xl:hidden">
+          <div className="lg:hidden">
             <MobileNavbar />
           </div>
-          <div className="flex flex-col items-center phone:ml-10 mac:flex mac:flex-col mac:justify-center mac:items-center mac">
-            <h1 className="text-4xl font-bold mt-8 mb-4 text-white">
+          <div className="pt-4 lg:pt-8 px-4 sm:px-6 lg:px-8 lg:ml-64">
+            <h1 className="text-3xl md:text-4xl font-bold mb-8 text-white text-center lg:text-left">
               Posts Saved by {user.displayName}
             </h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mad:ml-60 mt-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {savedPosts.map((data) => (
                 <motion.div
                   key={data.id}
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5 }}
+                  className="bg-[#0A0A0D] rounded-lg shadow-md overflow-hidden"
                 >
-                  <>
-                    <div className="bg-[#0A0A0D] p-10 rounded-lg shadow-md max-w-md phone:mr-10">
-                      <div className="flex itemss-center justify-between mb-4">
-                        <div className="flex items-center space-x-2">
-                          <img
-                            src={data.photo}
-                            alt="User Avatar"
-                            className="w-8 h-8 rounded-full"
-                          />
-                          <div>
-                            <p className="text-white font-semibold">
-                              {data.name}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="text-gray-500 cursor-pointer">
-                          <button className="hover:bg-gray-50 rounded-full p-1">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              // eslint-disable-next-line react/no-unknown-property
-                              stroke-width="2"
-                              // eslint-disable-next-line react/no-unknown-property
-                              stroke-linecap="round"
-                              // eslint-disable-next-line react/no-unknown-property
-                              stroke-linejoin="round"
-                            >
-                              <circle cx="12" cy="7" r="1" />
-                              <circle cx="12" cy="12" r="1" />
-                              <circle cx="12" cy="17" r="1" />
-                            </svg>
-                          </button>
-                        </div>
-                      </div>
-
-                      <div className="mb-4">
-                        <p className="text-white">
-                          {data.title}
-                          <div className="flex flex-row gap-2">
-                            <a href="" className="text-gray-400">
-                              {data.hastags}
-                            </a>
-                          </div>
-                        </p>
-                      </div>
-
-                      <div className="mb-4">
+                  <div className="p-4">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center space-x-2">
                         <img
-                          src={data.ipost}
-                          alt="Post Image"
-                          className="w-full h-48 object-cover rounded-md"
+                          src={data.photo}
+                          alt="User Avatar"
+                          className="w-8 h-8 rounded-full"
                         />
+                        <p className="text-white font-semibold">{data.name}</p>
                       </div>
+                      <button className="text-gray-500 hover:text-gray-300">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-6 w-6"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+                          />
+                        </svg>
+                      </button>
                     </div>
-                  </>
+                    <div className="mb-4">
+                      <img
+                        src={data.ipost}
+                        alt="Post Image"
+                        className="w-full h-48 object-cover rounded-md"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-white font-medium mb-2">{data.title}</p>
+                      <p className="text-gray-400 text-sm">{data.hastags}</p>
+                    </div>
+                  </div>
                 </motion.div>
               ))}
             </div>
           </div>
         </>
       ) : (
-        <div className="flex flex-col justify-center items-center absolute inset-0">
-          <button className="bg-white shadow-xl text-blue-700 font-bold w-20 p-4 rounded-full">
+        <div className="flex flex-col justify-center items-center h-screen">
+          <button className="bg-white shadow-xl text-blue-700 font-bold px-6 py-3 rounded-full text-lg">
             <Link to="/signin">Login</Link>
           </button>
         </div>
